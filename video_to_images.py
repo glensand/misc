@@ -16,7 +16,7 @@ def video_to_frames(input_loc, output_loc):
     try:
         os.mkdir(output_loc)
     except OSError:
-        pass
+        print("The output directory could not be created")
     # Log the time
     time_start = time.time()
     # Start capturing the feed
@@ -33,7 +33,9 @@ def video_to_frames(input_loc, output_loc):
         if not ret:
             continue
         # Write the results back to output location.
-        cv2.imwrite(output_loc + "/%#05d.jpg" % (count+1), frame)
+        name = output_loc + "/%#05d.jpg" % (count+1)
+        print("Write: " + name)
+        cv2.imwrite(name, frame)
         count = count + 1
         # If there are no more frames left
         if (count > (video_length-1)):
@@ -49,5 +51,5 @@ def video_to_frames(input_loc, output_loc):
 if __name__=="__main__":
 
     input_loc = 'in/' + input_file_name
-    output_loc = 'out/frames/'
+    output_loc = 'out'
     video_to_frames(input_loc, output_loc)
