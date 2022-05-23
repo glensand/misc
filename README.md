@@ -1,2 +1,2 @@
 # misc
-Usefull python scripts
+Usefull scripts
